@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-
 export const homeApi = axios.create({
-    baseURL: `http://localhost:8080/`,
+    baseURL: `http://10.0.0.70:8080/`,
     withCredentials: true,
 });
