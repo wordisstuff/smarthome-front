@@ -18,10 +18,13 @@ const valvesSlice = createSlice({
                     action.payload.relay2 === 'on' ? true : false;
             })
             .addCase(valvesTogle.fulfilled, (state, action) => {
-                state.valves.valve1 =
-                    action.payload.relay1 === 'on' ? true : false;
-                state.valves.valve2 =
-                    action.payload.relay2 === 'on' ? true : false;
+                console.log(action.payload);
+                if (action.payload.relay === 1)
+                    state.valves.valve1 =
+                        action.payload.state === 'on' ? true : false;
+                if (action.payload.relay === 2)
+                    state.valves.valve2 =
+                        action.payload.state === 'on' ? true : false;
             });
     },
 });

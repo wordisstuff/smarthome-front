@@ -18,7 +18,8 @@ export const valvesTogle = createAsyncThunk(
     async ({ state, relay }, { rejectWithValue }) => {
         try {
             const { data } = await homeApi.post(`valves`, { state, relay });
-            return data;
+            console.log(data);
+            return data.data;
         } catch (err) {
             return rejectWithValue(err.message);
         }

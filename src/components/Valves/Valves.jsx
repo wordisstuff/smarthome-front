@@ -2,16 +2,16 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getValvesStatus, valvesTogle } from '../../redux/valves/operation';
 import { valvesSelector } from '../../redux/valves/selectors';
-import CSS from './Valve.module.css'
+import CSS from './Valve.module.css';
 
-const Valves= () => {
+const Valves = () => {
     const dispatch = useDispatch();
 
     const valves = useSelector(valvesSelector);
     console.log('valves', valves);
     useEffect(() => {
         dispatch(getValvesStatus());
-    }, [dispatch, valves]);
+    }, [dispatch]);
 
     return (
         <>
@@ -39,7 +39,7 @@ const Valves= () => {
                     <input
                         type="checkbox"
                         checked={valves.valve2}
-                        onClick={() =>
+                        onChange={() =>
                             dispatch(
                                 valvesTogle({
                                     state: !valves.valve2,
@@ -53,6 +53,6 @@ const Valves= () => {
             </div>
         </>
     );
-}
+};
 
 export default Valves;
