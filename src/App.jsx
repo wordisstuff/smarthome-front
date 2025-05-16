@@ -5,6 +5,7 @@ import { getValvesStatus } from './redux/valves/operation';
 import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
 import { valvesSelector } from './redux/valves/selectors';
+import ValvesTime from './components/Valves/ValvesTime';
 
 function App() {
     const dispatch = useDispatch();
@@ -21,6 +22,7 @@ function App() {
                 <div className="grass">
                     Grass
                     <Valves valveNum={1} />
+                    <ValvesTime valveNum={1} />
                     <span
                         className={clsx({
                             sprinklPos1: true,
@@ -82,6 +84,7 @@ function App() {
                     <div className="gardenTop">
                         Garden
                         <Valves valveNum={2} />
+                        <ValvesTime valveNum={2} />
                     </div>
                     <div className="gardenGarag">
                         <div className="bottomGarden"></div>
