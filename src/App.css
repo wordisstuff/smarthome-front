@@ -1,0 +1,79 @@
+.container {
+    min-width: 320px;
+    max-width: 375px;
+    padding: 16px;
+    margin: 0 auto;
+    padding-top: 0;
+}
+
+@media only screen and (min-width: 768px) {
+    .container {
+        max-width: 768px;
+        padding: 32px;
+        padding-top: 4px;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .container {
+        max-width: 1440px;
+        padding: 32px;
+        padding-top: 4px;
+    }
+}
+.gg{
+    display: flex;
+        gap: 10px;
+}
+
+.garage{
+    width: 300px;
+    height: 400px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+.grass {
+    position: relative;
+    width: 600px;
+    height: 550px;
+    background-color: #96bf9c44;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+.sprinkl{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: red;
+}
+.sprinklPos1{
+    top: 5px;
+    left: 5px;
+}
+.sprinklPos2{
+    top: 5px;
+}
+.sprinklPos3{
+    top: 5px;
+    right: 5px;
+}
+.sprinklPos4{
+    right: 5px;
+}
+.sprinklPos5{
+    bottom: 5px;
+    right: 5px;
+}
+.sprinklPos6{
+    bottom: 5px;
+    left: 5px;
+}
+.sprinklOn{
+    background-color: rgb(4, 220, 4);
+}
