@@ -77,11 +77,56 @@ function App() {
                     </span>
                 </div>
             </div>
-            <div>
-                <div>Garden</div>
-                <div>Sun room</div>
+            <div className="gg">
+                <div className="garden">
+                    <div className="gardenTop">
+                        Garden
+                        <Valves valveNum={2} />
+                    </div>
+                    <div className="gardenGarag">
+                        <div className="bottomGarden"></div>
+                        <div className="gardenG"> Garag</div>
+                    </div>
+                    <span
+                        className={clsx({
+                            sprinklPos7: true,
+                            sprinkl: true,
+                            sprinklOn: valves.valve2,
+                        })}
+                    >
+                        {' '}
+                    </span>
+                    <span
+                        className={clsx({
+                            sprinklPos8: true,
+                            sprinkl: true,
+                            sprinklOn: valves.valve2,
+                        })}
+                    >
+                        {' '}
+                    </span>
+                    <span
+                        className={clsx({
+                            sprinklPos9: true,
+                            sprinkl: true,
+                            sprinklOn: valves.valve2,
+                        })}
+                    >
+                        {' '}
+                    </span>
+                    <span
+                        className={clsx({
+                            sprinklPos10: true,
+                            sprinkl: true,
+                            sprinklOn: valves.valve2,
+                        })}
+                    >
+                        {' '}
+                    </span>
+                </div>
+                <div className="patio">Patio</div>
+                <div className="sunroom">Sun room</div>
             </div>
-            <Valves valveNum={2} />
         </div>
     );
 }

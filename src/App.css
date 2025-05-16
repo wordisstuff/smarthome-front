@@ -29,7 +29,8 @@
 .garage{
     width: 300px;
     height: 400px;
-    background-color: #fff;
+    background-color: #ab5757bb;
+    color: aliceblue;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,8 +73,77 @@
 }
 .sprinklPos6{
     bottom: 5px;
-    left: 5px;
+    left: 50px;
 }
 .sprinklOn{
     background-color: rgb(4, 220, 4);
+}
+
+.garden {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    background-color: #50d27d99;
+    border-radius: 5px;
+}
+.patio {
+    width: 250px;
+    height: 250px;
+    background-color: #5d9ce899;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+.sunroom {
+    width: 250px;
+    height: 250px;
+    background-color: #efe777;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+.gardenTop{
+    width: 300px;
+    height: 250px;
+    display: flex;
+        justify-content: center;
+        align-items: start;
+}
+.gardenGarag{
+    display: flex;
+}
+.bottomGarden{
+    width: 150px;
+    height: 100px;
+}
+.gardenG{
+    display: flex;
+        justify-content: center;
+        align-items: center;
+        color: aliceblue;
+width: 250px;
+    height: 150px;
+    background: #a26363;
+    border-radius: 5px;
+}
+
+.sprinklPos7 {
+    top: 120px;
+    right: 25px;
+}
+
+.sprinklPos8 {
+    top: 140px;
+}
+
+.sprinklPos9 {
+    top: 120px;
+    right: 140px;
+}
+
+.sprinklPos10 {
+    left: 80px;
+    bottom: 5px;
 }
