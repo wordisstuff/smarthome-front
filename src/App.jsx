@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
 import { valvesSelector } from './redux/valves/selectors';
 import ValvesTime from './components/Valves/ValvesTime';
+import icons from './icons/icons.svg';
 
 function App() {
     const dispatch = useDispatch();
@@ -23,59 +24,82 @@ function App() {
                     Grass
                     <Valves valveNum={1} />
                     <ValvesTime valveNum={1} />
-                    <span
-                        className={clsx({
-                            sprinklPos1: true,
-                            sprinkl: true,
-                            sprinklOn: valves.valve1,
-                        })}
-                    >
-                        {' '}
+                    <span>
+                        <svg
+                            className={clsx('icon', {
+                                sprinklPos1: true,
+                                sprinkl: true,
+                                sprinklOn: valves.valve1,
+                            })}
+                        >
+                            <use xlinkHref={`${icons}#sprinkler`} />
+                        </svg>
                     </span>
-                    <span
-                        className={clsx({
-                            sprinklPos2: true,
-                            sprinkl: true,
-                            sprinklOn: valves.valve1,
-                        })}
-                    >
-                        {' '}
+                    <span>
+                        <svg
+                            className={clsx('icon', {
+                                sprinklPos2: true,
+                                sprinkl: true,
+                                sprinklOn: valves.valve1,
+                            })}
+                        >
+                            <use xlinkHref={`${icons}#sprinkler`} />
+                        </svg>
                     </span>
-                    <span
-                        className={clsx({
-                            sprinklPos3: true,
-                            sprinkl: true,
-                            sprinklOn: valves.valve1,
-                        })}
-                    >
-                        {' '}
+                    <span>
+                        <svg
+                            className={clsx('icon', {
+                                sprinklPos3: true,
+                                sprinkl: true,
+                                sprinklOn: valves.valve1,
+                            })}
+                        >
+                            <use xlinkHref={`${icons}#sprinkler`} />
+                        </svg>
                     </span>
-                    <span
-                        className={clsx({
-                            sprinklPos4: true,
-                            sprinkl: true,
-                            sprinklOn: valves.valve1,
-                        })}
-                    >
-                        {' '}
+                    <span>
+                        <svg
+                            className={clsx('icon', {
+                                sprinklPos4: true,
+                                sprinkl: true,
+                                sprinklOn: valves.valve1,
+                            })}
+                        >
+                            <use xlinkHref={`${icons}#sprinkler`} />
+                        </svg>
                     </span>
-                    <span
-                        className={clsx({
-                            sprinklPos5: true,
-                            sprinkl: true,
-                            sprinklOn: valves.valve1,
-                        })}
-                    >
-                        {' '}
+                    <span>
+                        <svg
+                            className={clsx('icon', {
+                                sprinklPos5: true,
+                                sprinkl: true,
+                                sprinklOn: valves.valve1,
+                            })}
+                        >
+                            <use xlinkHref={`${icons}#sprinkler`} />
+                        </svg>
                     </span>
-                    <span
-                        className={clsx({
-                            sprinklPos6: true,
-                            sprinkl: true,
-                            sprinklOn: valves.valve1,
-                        })}
-                    >
-                        {' '}
+                    <span>
+                        <svg
+                            className={clsx('icon', {
+                                sprinklPos6: true,
+                                sprinkl: true,
+                                sprinklOn: valves.valve1,
+                            })}
+                        >
+                            <use xlinkHref={`${icons}#sprinkler`} />
+                        </svg>
+                    </span>
+                    <span>
+                        <svg
+                            className={clsx('icon', {
+                                sprinklPos11: true,
+                                sprinkl: true,
+                                sprinklOn: valves.valve1,
+                            })}
+                        >
+                            <use xlinkHref={`${icons}#sprinkler`} />
+                        </svg>
                     </span>
                 </div>
             </div>
