@@ -1,156 +1,276 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #101513;
+    color: #eef7f0;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
 .container {
-    min-width: 320px;
-    max-width: 375px;
-    padding: 16px;
+    width: min(1100px, 100%);
     margin: 0 auto;
-    padding-top: 0;
+    padding: 18px;
 }
 
-@media only screen and (min-width: 768px) {
-    .container {
-        max-width: 768px;
-        padding: 32px;
-        padding-top: 4px;
-    }
-}
-
-@media only screen and (min-width: 1440px) {
-    .container {
-        max-width: 1440px;
-        padding: 32px;
-        padding-top: 4px;
-    }
-}
-.gg{
+.topBar {
     display: flex;
-        gap: 10px;
-}
-.icon{
-  fill: transparent;
-}
-
-.garage{
-    width: 300px;
-    height: 400px;
-    background-color: #ab5757bb;
-    color: aliceblue;
-    display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    border-radius: 5px;
+    margin-bottom: 16px;
 }
-.grass {
-    position: relative;
-    width: 600px;
-    height: 550px;
-    background-color: #96bf9c44;
+
+.label {
+    margin: 0;
+    color: #86efac;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-weight: 800;
+}
+
+h1 {
+    margin: 4px 0 0;
+    font-size: 34px;
+}
+
+.onlineBadge {
     display: flex;
-    justify-content: center;
     align-items: center;
-    border-radius: 5px;
+    gap: 8px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    font-weight: 800;
 }
-.sprinkl{
-    position: absolute;
-    width: 50px;
-    height: 50px;
+
+.onlineBadge span {
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    /* background-color: red; */
+    background: #4ade80;
+    box-shadow: 0 0 14px #4ade80;
 }
-.sprinklPos1{
-    top: 5px;
-    left: 5px;
+
+.map {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
-.sprinklPos2{
-    left: 5px;
+
+.row {
+    display: flex;
+    gap: 10px;
 }
-.sprinklPos3{
-    top: 5px;
-    right: 5px;
+
+.zone {
+    position: relative;
+    overflow: visible; 
+    border-radius: 16px;
+    padding: 14px;
+    min-height: 240px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
-.sprinklPos4{
-    right: 5px;
+
+.zoneTitle {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 900;
 }
-.sprinklPos5{
-    bottom: 5px;
-    right: 5px;
+
+.zoneTitle small {
+    font-size: 12px;
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.22);
+    color: rgba(255, 255, 255, 0.78);
 }
-.sprinklPos6{
-    bottom: 5px;
-    left: 50px;
+
+.garage {
+    width: 32%;
+    min-height: 390px;
+    background: linear-gradient(145deg, #7a514b, #392b28);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 900;
 }
-.sprinklPos11{
-  bottom: 200px;
-  
-}
-.sprinklOn{
-    fill: rgb(62, 147, 251);
+
+.grass {
+    width: 68%;
+    min-height: 390px;
+    background:
+        radial-gradient(circle at 25% 30%, rgba(125, 245, 151, 0.28), transparent 28%),
+        linear-gradient(145deg, #3f8f55, #1d5132);
 }
 
 .garden {
-    position: relative;
-    width: 300px;
-    height: 400px;
-    background-color: #50d27d99;
-    border-radius: 5px;
-}
-.patio {
-    width: 250px;
-    height: 250px;
-    background-color: #5d9ce899;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-}
-.sunroom {
-    width: 250px;
-    height: 250px;
-    background-color: #efe777;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-}
-.gardenTop{
-    width: 300px;
-    height: 250px;
-    display: flex;
-        justify-content: center;
-        align-items: start;
-}
-.gardenGarag{
-    display: flex;
-}
-.bottomGarden{
-    width: 150px;
-    height: 100px;
-}
-.gardenG{
-    display: flex;
-        justify-content: center;
-        align-items: center;
-        color: aliceblue;
-width: 250px;
-    height: 150px;
-    background: #a26363;
-    border-radius: 5px;
+    width: 36%;
+    min-height: 290px;
+    background:
+        radial-gradient(circle at 70% 30%, rgba(147, 255, 174, 0.22), transparent 28%),
+        linear-gradient(145deg, #318250, #173f2c);
 }
 
+.patio {
+    width: 32%;
+    min-height: 290px;
+    background: linear-gradient(145deg, #4f7ea2, #253f53);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 900;
+}
+
+.sunroom {
+    width: 32%;
+    min-height: 290px;
+    background: linear-gradient(145deg, #ded168, #83742c);
+    color: #1b201c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 900;
+}
+
+.activeZone {
+    outline: 2px solid rgba(96, 165, 250, 0.75);
+    box-shadow:
+        0 0 0 8px rgba(96, 165, 250, 0.08),
+        inset 0 0 80px rgba(96, 165, 250, 0.08);
+}
+
+.sprinklerIcon {
+    position: absolute;
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    fill: rgba(255, 255, 255, 0.72);
+    opacity: 0.75;
+    transform-origin: center;
+    transition: 0.25s ease;
+}
+
+.sprinklerOn {
+    fill: #60a5fa;
+    opacity: 1;
+    filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.9));
+    animation: sprinklerPulse 1.2s infinite ease-in-out;
+}
+
+.sprinklerOn::after {
+    content: '';
+}
+
+@keyframes sprinklerPulse {
+    0% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 6px rgba(96, 165, 250, 0.7));
+    }
+
+    50% {
+        transform: scale(1.18);
+        filter: drop-shadow(0 0 18px rgba(96, 165, 250, 1));
+    }
+
+    100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 6px rgba(96, 165, 250, 0.7));
+    }
+}
+
+/* Grass sprinklers */
+.sprinklPos1 {
+    top: 64px;
+    left: 24px;
+}
+
+.sprinklPos2 {
+    top: 180px;
+    left: 28px;
+}
+
+.sprinklPos3 {
+    top: 64px;
+    right: 28px;
+}
+
+.sprinklPos4 {
+    top: 190px;
+    right: 28px;
+}
+
+.sprinklPos5 {
+    bottom: 28px;
+    right: 32px;
+}
+
+.sprinklPos6 {
+    bottom: 28px;
+    left: 86px;
+}
+
+.sprinklPos11 {
+    bottom: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Garden sprinklers */
 .sprinklPos7 {
-    top: 120px;
-    right: 25px;
+    top: 74px;
+    right: 28px;
 }
 
 .sprinklPos8 {
-    top: 140px;
+    top: 132px;
+    left: 28px;
 }
 
 .sprinklPos9 {
-    top: 120px;
-    right: 140px;
+    bottom: 70px;
+    right: 110px;
 }
 
 .sprinklPos10 {
-    left: 80px;
-    bottom: 5px;
+    bottom: 24px;
+    left: 78px;
+}
+
+@media (max-width: 760px) {
+    .container {
+        padding: 12px;
+    }
+
+    .topBar {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .row {
+        flex-direction: column;
+    }
+
+    .garage,
+    .grass,
+    .garden,
+    .patio,
+    .sunroom {
+        width: 100%;
+    }
+
+    .grass {
+        min-height: 430px;
+    }
 }

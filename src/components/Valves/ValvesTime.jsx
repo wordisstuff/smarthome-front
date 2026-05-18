@@ -1,42 +1,67 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect, useRef } from 'react';
-import { valvesTogle } from '../../redux/valves/operation';
-import { valvesSelector } from '../../redux/valves/selectors';
+import { useEffect, useState } from 'react';
+import {
+    startValveTimer,
+    stopValve,
+    getValvesStatus,
+} from '../../redux/valves/operation';
+import {
+    valvesSelector,
+    activeSessionsSelector,
+} from '../../redux/valves/selectors';
 import CSS from './ValvesTime.module.css';
 
 const ValvesTime = ({ valveNum }) => {
     const dispatch = useDispatch();
     const key = `valve${valveNum}`;
+
     const valves = useSelector(valvesSelector);
+    const activeSessions = useSelector(activeSessionsSelector);
 
-    const [duration, setDuration] = useState(10); // хвилини
-    const [isTiming, setIsTiming] = useState(false);
-    const [timeLeft, setTimeLeft] = useState(0); // секунди
-    const timerRef = useRef(null);
+    const [duration, setDuration] = useState(10);
+    const [timeLeft, setTimeLeft] = useState(0);
+    const [isOpen, setIsOpen] = useState(false);
 
-    const handleStart = () => {
-        const totalSeconds = duration * 60;
-        setTimeLeft(totalSeconds);
-        setIsTiming(true);
-
-        dispatch(valvesTogle({ state: true, relay: valveNum }));
-
-        timerRef.current = setInterval(() => {
-            setTimeLeft(prev => {
-                if (prev <= 1) {
-                    clearInterval(timerRef.current);
-                    dispatch(valvesTogle({ state: false, relay: valveNum }));
-                    setIsTiming(false);
-                    return 0;
-                }
-                return prev - 1;
-            });
-        }, 1000);
-    };
+    const activeSession = activeSessions.find(
+        session => session.relay === valveNum,
+    );
 
     useEffect(() => {
-        return () => clearInterval(timerRef.current); // очистити таймер при розмонтуванні
-    }, []);
+        dispatch(getValvesStatus());
+
+        const intervalId = setInterval(() => {
+            dispatch(getValvesStatus());
+        }, 10000);
+
+        return () => clearInterval(intervalId);
+    }, [dispatch]);
+
+    useEffect(() => {
+        if (!activeSession?.endsAt) {
+            setTimeLeft(0);
+            return;
+        }
+
+        const tick = () => {
+            const diff = new Date(activeSession.endsAt).getTime() - Date.now();
+            setTimeLeft(Math.max(0, Math.floor(diff / 1000)));
+        };
+
+        tick();
+
+        const intervalId = setInterval(tick, 1000);
+        return () => clearInterval(intervalId);
+    }, [activeSession?.endsAt]);
+
+    const handleStart = () => {
+        dispatch(startValveTimer({ relay: valveNum, minutes: duration }));
+        setIsOpen(false);
+    };
+
+    const handleStop = () => {
+        dispatch(stopValve({ relay: valveNum }));
+        setIsOpen(false);
+    };
 
     const formatTime = sec => {
         const m = Math.floor(sec / 60)
@@ -46,60 +71,60 @@ const ValvesTime = ({ valveNum }) => {
         return `${m}:${s}`;
     };
 
-    const progress = isTiming ? 100 - (timeLeft / (duration * 60)) * 100 : 0;
-
     return (
-        <div className={CSS.valves}>
-            <label className={CSS.switch}>
-                <input
-                    type="checkbox"
-                    checked={valves[key]}
-                    onChange={() =>
-                        dispatch(
-                            valvesTogle({
-                                state: !valves[key],
-                                relay: valveNum,
-                            }),
-                        )
-                    }
-                    disabled={isTiming}
-                />
-                <span className={CSS.slider}></span>
-            </label>
+        <>
+            <button
+                className={CSS.openButton}
+                onClick={() => setIsOpen(prev => !prev)}
+            >
+                💧
+            </button>
 
-            <div className={CSS.controls}>
-                <select
-                    value={duration}
-                    onChange={e => setDuration(Number(e.target.value))}
-                    disabled={isTiming}
-                >
-                    <option value={20}>20 min</option>
-                    <option value={10}>10 min</option>
-                    <option value={15}>15 min</option>
-                </select>
-
-                <button
-                    onClick={handleStart}
-                    disabled={isTiming || valves[key]}
-                >
-                    Start {duration} min
-                </button>
-            </div>
-
-            {isTiming && (
-                <>
-                    <div className={CSS.timer}>
-                        Залишилось: <strong>{formatTime(timeLeft)}</strong>
-                    </div>
-                    <div className={CSS.progressBar}>
-                        <div
-                            className={CSS.progressFill}
-                            style={{ width: `${progress}%` }}
-                        ></div>
-                    </div>
-                </>
+            {valves[key] && (
+                <div className={CSS.miniTimer}>{formatTime(timeLeft)}</div>
             )}
-        </div>
+
+            {isOpen && (
+                <div className={CSS.panel}>
+                    <div className={CSS.panelHeader}>
+                        <strong>Zone {valveNum}</strong>
+                        <button onClick={() => setIsOpen(false)}>×</button>
+                    </div>
+
+                    <div className={CSS.quickButtons}>
+                        {[5, 10, 15, 20].map(min => (
+                            <button
+                                key={min}
+                                className={duration === min ? CSS.selected : ''}
+                                onClick={() => setDuration(min)}
+                                disabled={valves[key]}
+                            >
+                                {min}
+                            </button>
+                        ))}
+                    </div>
+
+                    {!valves[key] ? (
+                        <button
+                            className={CSS.startButton}
+                            onClick={handleStart}
+                        >
+                            Start {duration} min
+                        </button>
+                    ) : (
+                        <button className={CSS.stopButton} onClick={handleStop}>
+                            Stop watering
+                        </button>
+                    )}
+
+                    <div className={CSS.status}>
+                        {valves[key]
+                            ? `Watering • ${formatTime(timeLeft)} left`
+                            : 'Idle'}
+                    </div>
+                </div>
+            )}
+        </>
     );
 };
 

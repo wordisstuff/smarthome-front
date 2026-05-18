@@ -1,6 +1,6 @@
 import axios from 'axios';
 
 export const homeApi = axios.create({
-    baseURL: `http://10.0.0.70:8080/`,
+    baseURL: import.meta.env.VITE_API_URL,
     withCredentials: true,
 });
